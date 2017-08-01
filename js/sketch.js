@@ -82,19 +82,31 @@ function preload() {
   font = loadFont(font);
 }
 
-function setup() {
-  const text = "8banana";
+function createText(text, resize) {
+  let leftPadding = 20;
 
+  (resize ? resizeCanvas : createCanvas)(leftPadding + textWidth(text), 256);
   textSize(192);
-  createCanvas(textWidth(text), 256);
-  angleMode(DEGREES);
-  freePoints = font.textToPoints(text, 0, 200);
+  freePoints = font.textToPoints(text, leftPadding, 200);
 
+  creatures = [];
   while (freePoints.length > 0) {
     let creature = new Creature();
     creature.setTarget(freePoints.pop());
     creatures.push(creature);
   }
+}
+
+function setup() {
+  textSize(192);
+  angleMode(DEGREES);
+
+  // TODO: Figure out why spaces don't work.
+  createText("8banana", false);
+  let inp = createInput("8banana");
+  inp.input(function() {
+    createText(this.value(), true);
+  });
 }
 
 function draw() {
