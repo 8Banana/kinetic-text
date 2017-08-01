@@ -85,11 +85,10 @@ function preload() {
 function setup() {
   const text = "8banana";
 
-  //createCanvas(64 + 256 + 512, 256 + 64);
-  createCanvas(text.length * 125, 32 + 256);
   textSize(192);
+  createCanvas(textWidth(text), 256);
   angleMode(DEGREES);
-  freePoints = font.textToPoints(text, 10, 200);
+  freePoints = font.textToPoints(text, 0, 200);
 
   while (freePoints.length > 0) {
     let creature = new Creature();
