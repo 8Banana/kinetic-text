@@ -11,7 +11,7 @@ class Creature {
     this.pos = createVector(random(width), random(height));
     this.target = null;
     this.r = 5;
-    this.maxVelocity = 5;
+    this.maxVelocity = 10;
 
     this.vel = createVector();
     this.acc = createVector();
